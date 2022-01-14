@@ -3,10 +3,10 @@
 The goal of this document is to help implement the DoD/NIST security settings for Windows clients using Intune.  Along with this documentation are the Intune Backups that can be implemented in almost any organization.  The Intune Policies have been built from the Microsoft Security baselines and templates at the Defense Information Systems Agency site(DISA).  The reason for using the DISA site is the STIG Viewer and SCC SCAP tool.  These provide easy to use tools for viewing and documenting the DoD/NIST settings.  Using this tool one can import the specific catalog of settings for a wide range of systems, applications and other products.  DoD has now also released the SCC SCAP tool which lets you scan a local and remote systems for compliance.  See links below in the [References Section](#references).  
 
 This is primarily designed for organizations that mange endpoints using Intune MDM and are only Azure registered or joined.  All of the policies referenced below have been provided in the backup and will be available after the restore is complete.  These templates are used by this organization on production systems, with the caveat that we are a small security focused group and do not have any internal business applications that these settings might affect.  The general rule of thumb is try all the settings first, then remove any that are an impediment to your business operation.  
-##### Section 1: [Microsoft Security Baseline](#section-1-microsoft-security-baseline)  
-##### Section 2: [Microsoft Firewall](#section-2-microsoft-firewall)
-##### Section 3: [Configuration Profiles](#section-3-configuration-profiles)  
-##### Section 4: [Importing Policies](#section-4-importing-policies)  
+##### Section 1: [Microsoft Security Baseline](#section-1-microsoft-security-baseline-home)  
+##### Section 2: [Microsoft Firewall](#section-2-microsoft-firewall-home)
+##### Section 3: [Configuration Profiles](#section-3-configuration-profiles-home)  
+##### Section 4: [Importing Policies](#section-4-importing-policies-home)  
 ##### Section 5: [References](#references)
 
 #### Section 1: Microsoft Security Baseline [HOME](#title-office-365-intune)
