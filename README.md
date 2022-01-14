@@ -1,6 +1,6 @@
 ### Title: Office 365 Intune  
 ### Purpose: Document Implementing Security Configurations using Intune   
-The goal of this document is to help implement the DoD/NIST security settings for Windows clients using Intune.  Along with this documentation are the Intune Backups that can be implemented in almost any organization.  The Intune Policies have been built from the Microsoft Security baselines and templates at the Defense Information Systems Agency site(DISA).  The reason for using the DISA site is the STIG Viewer and SCC SCAP tool.  These provide easy to use tools for viewing and documenting the DoD/NIST settings.  Using this tool one can import the specific catalog of settings for a wide range of systems, applications and other products.  DoD has now also released the SCC SCAP tool which lets you scan a local or remote system for compliance.  See links below in the [References Section](#references).  
+The goal of this document is to help implement the DoD/NIST security settings for Windows clients using Intune.  Along with this documentation are the Intune Backups that can be implemented in any organization.  The Intune Policies have been built from the Microsoft Security baselines and templates at the Department of Defense(DoD) Defense Information Systems Agency site(DISA).  The reason for using the DISA site is the STIG Viewer and SCC SCAP tool.  These are easy to use tools for viewing, documenting and validating the DoD/NIST settings.  DoD has now also released the SCC SCAP tool to the public, which lets you scan a local or remote system for compliance.  See links below in the [References Section](#references) for the guides and training videos.  
 
 This is primarily designed for organizations that mange endpoints using Intune MDM and are only Azure registered or joined.  All of the policies referenced below have been provided in the backup and will be available after the restore is complete.  These templates are used by this organization on production systems, with the caveat that we are a small security focused group and do not have any internal business applications that these settings might affect.  The general rule of thumb is try all the settings first, then remove any that are an impediment to your business operation.  
 ##### Section 1: [Microsoft Security Baseline](#section-1-microsoft-security-baseline-home)  
@@ -85,6 +85,9 @@ Note: Open PowerShell as an admin to perform the following tasks
 
 
 #### References [HOME](#title-office-365-intune)  
+* [STIG Viewer User Guide](https://dl.dod.cyber.mil/wp-content/uploads/stigs/pdf/U_STIG_Viewer_2-x_User_Guide_V1R11.pdf)
+* [STIG Viewer Video](https://youtu.be/LdBfJZ7aK9w)
+* [SCC Training Videos](https://www.niwcatlantic.navy.mil/scap/videos/)
 * [SCC SCAP Tool](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/scc-5.4.2_Windows_bundle.zip)
 * [STIG Viewer](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_STIGViewer_2-15_Win64.zip)
 * [Intune Backup and Restore module(GitHub)](https://github.com/jseerden/IntuneBackupAndRestore)  
