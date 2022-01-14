@@ -1,6 +1,6 @@
 ### Title: Office 365 Intune  
 ### Purpose: Document Implementing DoD STIGs using Intune   
-The goal of this document is to help implement the DoD/NIST security settings for Windows clients on a non-DoD network using Intune.  While many people become concerned with the use of DoD security settings, they are in fact the same controls from NIST, but in an easy to follow checklist.  Along with this documentation are the Intune Backups that can be imported, and implemented in almost any organization.  The Intune Policies have been built from the templates at the Defense Information Systems Agency site(DISA).  The reason for using the DISA site is the STIG Viewer and benchmarks.  These provide an easy to use tool for viewing and documenting the DoD/NIST settings.  Using this tool one can import the specific catalog of settings for a wide range of systems, applications and other products.  DoD has now also released the SCC SCAP Tool which lets you scan a local/remote system for compliance.  See links below in the [References Section](#references).  This is primarily designed for organizations that mange endpoints using Intune MDM and are Azure registered or joined.  
+The goal of this document is to help implement the DoD/NIST security settings for Windows clients on a non-DoD network using Intune.  While many people become concerned with the use of DoD security settings, they are in fact the same controls from NIST, but in an easy to follow checklist.  Along with this documentation are the Intune Backups that can be imported, and implemented in almost any organization.  The Intune Policies have been built from the templates at the Defense Information Systems Agency site(DISA).  The reason for using the DISA site is the STIG Viewer and benchmarks.  These provide an easy to use tool for viewing and documenting the DoD/NIST settings.  Using this tool one can import the specific catalog of settings for a wide range of systems, applications and other products.  DoD has now also released the SCC SCAP Tool which lets you scan a local/remote system for compliance.  See links below in the [References Section](#references).  This is primarily designed for organizations that mange endpoints using Intune MDM and are Azure registered or joined.  All of the policies referenced below have been provided in the backup and will be available after the restore is complete.  
 ##### Section 1: [Microsoft Security Baseline](#section-1-microsoft-security-baseline)  
 ##### Section 2: [Configuration Profiles](#section-2-configuration-profiles)  
 ##### Section 3: [Importing Policies](#section-3-importing-policies)  
@@ -8,18 +8,28 @@ The goal of this document is to help implement the DoD/NIST security settings fo
 #### Section 1: Microsoft Security Baseline [HOME](#title-office-365-intune)
 Microsoft has [Security Baselines](https://docs.microsoft.com/en-us/mem/intune/protect/security-baseline-settings-mdm-all?pivots=november-2021) that cover a significant amount of settings.  So the idea is to apply a security baseline first, then create additional configuration policies for anything else required.  
 
-* Create Security Baseline using the November 2021 version  
-  * Login to [Microsoft Endpoint Manager admin center](https://endpoint.microsoft.com)
-  * Select `Endpoint security` -> `Security baselines` -> `Security Baseline for Windows 10 and later`
-  ![alt text](img/security-baselines.png "Security Baselines")
-  * Create a new profile  
-  Note: There are a few settings that have been removed from the Security Baseline to improve functionality in a business environment.  Each organization will have to determine what works best for them and test before applying to production environments.  Here are the items that have been changed in the Security Baseline:
-    * `BitLocker` -> `BitLocker removable drive policy` -> `Not configured`  This is a good policy to leave on, but depends on how much the organization uses removable media.  
-    ![alt text](img/bitlocker.png "BitLocker Removable Drive Policy")  
-    * `Local Policies Security Options` -> `Standard user elevation prompt behavior` -> `Prompt for credentials on the secure desktop`  
-    ![alt text](img/uac.png "UAC")
-    * `Microsoft Defender` -> `Block all Office applications from creating child processes` -> `Audit mode`  This is actually a great setting, but have found it to be problematic with normal application operation.  
-    ![alt text](img/defender.png "Microsoft Defender child processes")
+* Security Baseline using the November 2021 version  
+The restored Security Baseline is named `Windows Business Baseline Policy` and can be viewed here:  
+  * `Endpoint security` -> `Security baselines` -> `Security Baseline for Windows 10 and later`  
+  ![alt text](img/security-baselines.png "Security Baselines")  
+
+There are a few settings that have been removed from the Security Baseline to improve functionality in a business environment.  Each organization will have to determine what works best for them and test before applying to production environments.  Here are the items that have been changed or removed in the Security Baseline:
+  * `BitLocker` -> `BitLocker removable drive policy` -> `Not configured`  This is a good policy to leave on, but depends on how much the organization uses removable media.  
+  ![alt text](img/bitlocker.png "BitLocker Removable Drive Policy")  
+  * `Local Policies Security Options` -> `Standard user elevation prompt behavior` -> `Prompt for credentials on the secure desktop`  
+  Note: If the organization is using a Remote Assistance solution this might have to be changed to just `Prompt for credentials`.  Prompting for credentials on the secure desktop will not allow administrators to type in credentials using solutions such as Remote Assistance.  
+  ![alt text](img/uac.png "UAC")
+  * `Microsoft Defender` -> `Block all Office applications from creating child processes` -> `Audit mode`  This is actually a great setting, but have found it to be problematic with normal application operation.  
+  ![alt text](img/defender.png "Microsoft Defender child processes")
+  * `Firewall` has been set to `Not configured`.  The Firewall settings have been moved to separate policies here: `Endpoint security` -> `Firewall`.  
+  ![alt text](img/firewall.png "Firewall")  
+
+* Firewall  
+This section allows more granularity than the Security baseline or configuration profile because it allows the addition of firewall rules.  
+  * `Windows Business Firewall Policy`  All three profiles have been set the same.  
+  ![alt text](img/firewall-settings.png "Firewall Settings")
+
+  * `Windows Business Firewall Rules Policy` Has one rule to allow ICMP from the default gateway, generally used by DHCP to validate addresses.  Most organizations will need to create additional rules if the systems are managed in an Enterprise environment.  
 
 #### Section 2: Configuration Profiles [HOME](#title-office-365-intune)  
 Now that the Security Baseline has been applied, the rest of the STIG settings need to be applied using Configuration profiles.  The provided templates are in 2 different formats.  `Setting Catalog` is the newest format that allows combining more settings into a single policy but only works for Windows settings and applications.  In order to configure applications such as Chrome and Adobe, a `custom profile` must be used.  This repository contains a total of three policies:  
@@ -43,13 +53,9 @@ Importing/Restoring the policies is accomplished by using the `Intune Backup & R
 * Download policies using either by cloning the repository or downloading as a zip and extract the contents.   
 * Installing required modules  
 Note: Open PowerShell as an admin to perform the following tasks  
-  * Install `Intune Backup & Restore` module
+  * Install `Intune Backup & Restore` and `Microsoft Graph Intune` module
   ```
   Install-Module -Name IntuneBackupAndRestore
-  ```
-
-  * Install `Microsoft Graph Intune` module  
-  ```
   Install-Module -Name Microsoft.Graph.Intune
   ```
 
