@@ -85,7 +85,7 @@ Note: Open PowerShell as an admin to perform the following tasks
 
 
 #### References [HOME](#title-office-365-intune)  
-* [SCAP Tool](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/scc-5.4.2_Windows_bundle.zip)
+* [SCC SCAP Tool](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/scc-5.4.2_Windows_bundle.zip)
 * [STIG Viewer](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_STIGViewer_2-15_Win64.zip)
 * [Intune Backup and Restore module(GitHub)](https://github.com/jseerden/IntuneBackupAndRestore)  
 * [Intune Backup and Restore module(PowerShell Gallery)](https://www.powershellgallery.com/packages/IntuneBackupAndRestore)  
