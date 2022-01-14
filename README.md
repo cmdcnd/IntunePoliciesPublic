@@ -71,9 +71,9 @@ Note: Open PowerShell as an admin to perform the following tasks
   ```
 
   * Import/Restore the templates to Intune  
-  Note: See screenshot below of what the root folder should look like.  
+  Note: The path should be the folder in the screen shot.  
   ```
-  Start-IntuneRestoreConfig -Path path\to\root\folder\of\templates  
+  Start-IntuneRestoreConfig -Path c:\intunebackups\
   ```
   ![alt text](img/rootdirectory.png "Root Folder")
 
