@@ -26,12 +26,11 @@ There are a few settings that have been removed from the Security Baseline to im
   * `Firewall` has been set to `Not configured`.  The Firewall settings have been moved to separate policies here: `Endpoint security` -> `Firewall`.  
   ![alt text](img/firewall.png "Firewall")  
 
-* Firewall  
-This section allows more granularity than the Security baseline or configuration profile because it allows the addition of firewall rules.  
-  * `Windows Business Firewall Policy`  All three profiles have been set the same.  
+* Windows Business Firewall Policy.  This section allows more granularity than the Security baseline.  
+  * All three profiles have been set the same.  
   ![alt text](img/firewall-settings.png "Firewall Settings")
 
-  * `Windows Business Firewall Rules Policy` Has one rule to allow ICMP from the default gateway, generally used by DHCP to validate addresses.  Most organizations will need to create additional rules if the systems are managed in an Enterprise environment.  
+* Windows Business Firewall Rules Policy Has one rule to allow ICMP from the default gateway, generally used by DHCP to validate addresses.  Most organizations will need to create additional rules if the systems are managed in an Enterprise environment.  
 
 #### Section 2: Configuration Profiles [HOME](#title-office-365-intune)  
 Now that the Security Baseline has been applied, the rest of the STIG settings need to be applied using Configuration profiles.  The provided templates are in 2 different formats.  `Setting Catalog` is the newest format that allows combining more settings into a single policy but only works for Windows settings and applications.  In order to configure applications such as Chrome and Adobe, a `custom profile` must be used.  This repository contains a total of three policies:  
