@@ -29,7 +29,8 @@ There are a few settings that have been removed from the Security Baseline to im
   ![alt text](img/firewall.png "Firewall")  
 
 #### Section 2: Microsoft Firewall [HOME](#title-office-365-intune)
-* Windows Business Firewall Policy.  These baselines more granularity than the Security baseline.  
+* Windows Business Firewall Policy.  These baselines have more granularity than the Security baseline.  
+Note: If the organization systems are only joined to Azure, then only the Public profile is used.  
   * `Endpoint security` -> `Firewall`
   All three profiles have been set the same.  
   ![alt text](img/firewall-settings.png "Firewall Settings")
