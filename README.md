@@ -4,8 +4,10 @@ The goal of this document is to help implement the DoD/NIST security settings fo
 
 This is primarily designed for organizations that mange endpoints using Intune MDM and are only Azure registered or joined.  All of the policies referenced below have been provided in the backup and will be available after the restore is complete.  These templates are used by this organization on production systems, with the caveat that we are a small security focused group and do not have any internal business applications that these settings might affect.  The general rule of thumb is try all the settings first, then remove any that are an impediment to your business operation.  
 ##### Section 1: [Microsoft Security Baseline](#section-1-microsoft-security-baseline)  
-##### Section 2: [Configuration Profiles](#section-2-configuration-profiles)  
-##### Section 3: [Importing Policies](#section-3-importing-policies)  
+##### Section 2: [Microsoft Firewall](#section-2-microsoft-firewall)
+##### Section 3: [Configuration Profiles](#section-3-configuration-profiles)  
+##### Section 4: [Importing Policies](#section-4-importing-policies)  
+##### Section 5: [References](#references)
 
 #### Section 1: Microsoft Security Baseline [HOME](#title-office-365-intune)
 Microsoft has [Security Baselines](https://docs.microsoft.com/en-us/mem/intune/protect/security-baseline-settings-mdm-all?pivots=november-2021) that cover a significant amount of settings.  So the idea is to apply a security baseline first, then create additional configuration policies for other settings as required.  
@@ -26,14 +28,15 @@ There are a few settings that have been removed from the Security Baseline to im
   * `Firewall` has been set to `Not configured`.  The Firewall settings have been moved to separate policies here: `Endpoint security` -> `Firewall`.  
   ![alt text](img/firewall.png "Firewall")  
 
-* Windows Business Firewall Policy.  This section allows more granularity than the Security baseline.  
+#### Section 2: Microsoft Firewall [HOME](#title-office-365-intune)
+* Windows Business Firewall Policy.  These baselines more granularity than the Security baseline.  
   * `Endpoint security` -> `Firewall`
   All three profiles have been set the same.  
   ![alt text](img/firewall-settings.png "Firewall Settings")
 
 * Windows Business Firewall Rules Policy Has one rule to allow ICMP from the default gateway, generally used by DHCP to validate addresses.  Most organizations will need to create additional rules if the systems are managed in an Enterprise environment.  
 
-#### Section 2: Configuration Profiles [HOME](#title-office-365-intune)  
+#### Section 3: Configuration Profiles [HOME](#title-office-365-intune)  
 Now that the Security Baseline has been applied, the rest of the STIG settings need to be applied using Configuration profiles.  The provided templates are in 2 different formats.  `Setting Catalog` is the newest format that allows combining more settings into a single policy but only works for Windows settings and applications.  In order to configure applications such as Chrome and Adobe, a `custom profile` must be used.  This repository contains a total of three policies:  
 * Windows Business Computer Configuration Policy:  This policy contains a lot of settings, primarily for Office.  While using `Setting Catalog` policies makes it easier to manage everything in one policy, it is a little clunky trying to add new settings.  Meaning you have to be patient when adding new items and try not to add too many at once.   
   * Microsoft Office Settings: The main changes organizations tend to make is allowing macros.  The current template has them set to disallow all macros with no notification to the user.  While this is the safest setting, it may not work in all organizations.  If the organization still requires macros, at least keep the setting `Block macros from running in Office files from the Internet (User)`.  
@@ -50,7 +53,7 @@ Now that the Security Baseline has been applied, the rest of the STIG settings n
   * DisplayName: `STIG ID DTBC-0074` Description: `Use of the QUIC protocol must be disabled`  
 * Windows Business Adobe Acrobat Reader DC Policy: This policy comes from the [DoD GPO Download](https://public.cyber.mil/stigs/gpo/).  In it you will find the Adobe template here: `Intune Policies/Device Configuration`.  No settings were removed.
 
-#### Section 3: Importing Policies [HOME](#title-office-365-intune)  
+#### Section 4: Importing Policies [HOME](#title-office-365-intune)  
 Importing/Restoring the policies is accomplished by using the `Intune Backup & Restore` module, see links in the [References Section](#References) for detailed instructions on all the modules options.  This document will only provide examples of required commands to import templates.  Once the policies are imported they will need assignment to groups that contain computer objects.  
 * Download policies using either by cloning the repository or downloading as a zip and extract the contents.   
 * Installing required modules  
