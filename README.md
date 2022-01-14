@@ -7,7 +7,7 @@ This is primarily designed for organizations that mange endpoints using Intune M
 ##### Section 2: [Microsoft Firewall](#section-2-microsoft-firewall-home)
 ##### Section 3: [Configuration Profiles](#section-3-configuration-profiles-home)  
 ##### Section 4: [Importing Policies](#section-4-importing-policies-home)  
-##### Section 5: [References](#references)
+##### Section 5: [References](#references-home)
 
 #### Section 1: Microsoft Security Baseline [HOME](#title-office-365-intune)
 Microsoft has [Security Baselines](https://docs.microsoft.com/en-us/mem/intune/protect/security-baseline-settings-mdm-all?pivots=november-2021) that cover a significant amount of settings.  So the idea is to apply a security baseline first, then create additional configuration policies for other settings as required.  
