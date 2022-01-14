@@ -27,7 +27,8 @@ There are a few settings that have been removed from the Security Baseline to im
   ![alt text](img/firewall.png "Firewall")  
 
 * Windows Business Firewall Policy.  This section allows more granularity than the Security baseline.  
-  * All three profiles have been set the same.  
+  * `Endpoint security` -> `Firewall`
+  All three profiles have been set the same.  
   ![alt text](img/firewall-settings.png "Firewall Settings")
 
 * Windows Business Firewall Rules Policy Has one rule to allow ICMP from the default gateway, generally used by DHCP to validate addresses.  Most organizations will need to create additional rules if the systems are managed in an Enterprise environment.  
